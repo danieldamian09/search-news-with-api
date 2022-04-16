@@ -1,10 +1,27 @@
-import {useState, createContext} from "react";
+import { useState, useEffect, createContext } from "react";
+import axios from "axios";
 
 const NoticiasContext = createContext();
 
 const NoticiasProvider = ({ children }) => {
   
   const [categoria, setCagoria] = useState("general");
+  const [noticias, setNoticias] = useState([]);
+
+  const consultarApi = async () => {
+    try {
+      const url = `https://newsapi.org/v2/top-headlines?country=ar&category=${categoria}&apiKey=${import.meta.env.VITE_API_KEY}`;
+      const { data } = await axios(url);
+      setNoticias(data.articles);
+    } catch (error) {
+      return(error);
+    }
+  }
+
+  useEffect(() => {
+    consultarApi();
+  }, [categoria])
+  
 
   const hanldeChangeCategoria = e => {
     setCagoria(e.target.value);
