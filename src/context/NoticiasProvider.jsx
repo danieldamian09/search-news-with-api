@@ -1,10 +1,20 @@
-import {createContext} from "react";
+import {useState, createContext} from "react";
 
 const NoticiasContext = createContext();
 
-const NoticiasProvider = ({children}) => {
+const NoticiasProvider = ({ children }) => {
+  
+  const [categoria, setCagoria] = useState("general");
+
+  const hanldeChangeCategoria = e => {
+    setCagoria(e.target.value);
+  }
+
 	return (
-    <NoticiasContext.Provider value={{}}>
+    <NoticiasContext.Provider value={{
+      categoria,
+      hanldeChangeCategoria,
+    }}>
       {children}
     </NoticiasContext.Provider>
 	);
