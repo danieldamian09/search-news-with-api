@@ -31,6 +31,7 @@ const NoticiasProvider = ({ children }) => {
     <NoticiasContext.Provider value={{
       categoria,
       hanldeChangeCategoria,
+      noticias,
     }}>
       {children}
     </NoticiasContext.Provider>
