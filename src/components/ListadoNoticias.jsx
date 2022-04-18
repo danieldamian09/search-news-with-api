@@ -9,7 +9,7 @@ const ListadoNoticias = () => {
   return (
     <>
       <Typography textAlign={"center"} marginY={5} component="h2" variant="h3">Últimas Noticias</Typography>
-      <Grid>
+      <Grid container spacing={2}>
         {noticias.map(noticia => (
           <Noticia key={noticia.url} noticia={noticia} />
         ))}
